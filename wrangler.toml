@@ -1,0 +1,27 @@
+name = 'discord-notifications-worker'
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+workers_dev = false
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+redact_query_string = false
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+destinations = [ "osthelia-logs" ]
+persist = true
+
+[observability.traces]
+enabled = true
+head_sampling_rate = 1
+destinations = [ "osthelia-traces" ]
+persist = true
+
+# Secrets (never in this file, set with `wrangler secret put <name>`):
+#   DISCORD_BOT_TOKEN  bot token, must share a guild with every recipient
+#   SERVICE_KEYS       JSON map of service name -> API key, e.g. {"gc-stats":"...","osthelia":"..."}

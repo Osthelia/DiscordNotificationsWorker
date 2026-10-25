@@ -1,4 +1,4 @@
-import type { Env } from "./types";
+import type { Env } from "./types.js";
 
 function timingSafeEqual(a: string, b: string): boolean {
   if (a.length !== b.length) return false;

@@ -1,4 +1,4 @@
-import type { ButtonPayload, ContainerBlock, ContainerPayload, EmbedFieldPayload, EmbedPayload, NotifyRequestBody } from "./types";
+import type { ButtonPayload, ContainerBlock, ContainerPayload, EmbedFieldPayload, EmbedPayload, NotifyRequestBody } from "./types.js";
 
 const SNOWFLAKE_RE = /^\d{17,20}$/;
 const MAX_MESSAGE_LENGTH = 1900;

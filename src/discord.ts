@@ -1,4 +1,4 @@
-import type { ButtonPayload, ContainerBlock, ContainerPayload, EmbedPayload, NotifyRequestBody, NotifyResult } from "./types";
+import type { ButtonPayload, ContainerBlock, ContainerPayload, EmbedPayload, NotifyRequestBody, NotifyResult } from "./types.js";
 
 const DISCORD_API = "https://discord.com/api/v10";
 const MAX_ATTEMPTS = 3;

@@ -1,6 +1,6 @@
 # Osthelia Discord Notifications Worker
 
-Cloudflare Worker shared by every service that needs to send a Discord DM
+Small stateless Node HTTP service (container, runs on Kubernetes) shared by every service that needs to send a Discord DM
 (GC Stats, Osthelia, ...). Its only job is sending the DM — it does not
 check server membership itself; the caller is responsible for verifying the
 recipient has joined a server the bot shares with them (Discord refuses DMs
@@ -107,12 +107,19 @@ Response: `{ "ok": true, "channelId": "...", "messageId": "..." }` or
 
 ```
 npm install
-wrangler secret put DISCORD_BOT_TOKEN
-wrangler secret put SERVICE_KEYS   # JSON: {"gc-stats":"...","osthelia":"..."}
-npm run deploy
+cp .env.example .env   # fill DISCORD_BOT_TOKEN and SERVICE_KEYS
+npm run dev
 ```
 
-For local dev, copy `.dev.vars.example` to `.dev.vars` and fill it in.
+Configuration (environment variables):
+- `DISCORD_BOT_TOKEN`: bot token.
+- `SERVICE_KEYS`: JSON map `{"gc-stats":"...","osthelia":"..."}`.
+- `PORT`: listen port, default 3000.
+
+Probes: `GET /api/healthz` and `GET /api/readyz` (also `/health`). Logs are
+JSON on stdout. On `SIGTERM` the server stops accepting and finishes
+in-flight requests (20 s max). The image is built and scanned (Trivy) by
+`.github/workflows/build.yml` and pushed to `ghcr.io/osthelia/discord-notifications:<sha>`.
 
 The bot must be a member of every guild its recipients are expected to be
 in — sending a DM requires a mutual guild, there's no separate bot

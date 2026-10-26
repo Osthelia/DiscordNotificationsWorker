@@ -31,7 +31,7 @@ To keep the codebase clean and maintainable:
   ```
 - **Local development:** Copy `.env.example` to `.env` and run the service with `npm run dev`. Never commit real API keys or tokens.
 - **Backward compatibility:** The worker is shared by several services. Changes to the `/notify` payload must stay backward compatible, or be discussed in an issue first.
-- **Copyright notice:** Do not remove or alter the Osthelia copyright notice shown by the calling services (see [LICENSE.md](LICENSE.md)).
+- **Copyright notice:** Keep the Osthelia copyright notice of [LICENSE.md](LICENSE.md) (MIT).
 
 ### 4. Submitting a Pull Request
 
